@@ -3,10 +3,7 @@ import { useState, useContext, ReactNode, createContext } from "react";
 interface User {
   email: string;
   id: number;
-  oab: string;
-  phone: string;
-  state: string;
-  username: string;
+  name: string;
 }
 
 interface UserContextData {
