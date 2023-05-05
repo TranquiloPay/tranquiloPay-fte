@@ -1,10 +1,10 @@
 import React from "react";
 import { lazy } from "react";
-import Login from "../../pages/Login";
-import Register from "../../pages/Register";
-import Dashboard from "../../pages/Dashboard";
 
 const Home = lazy(() => import("../../pages/Home"));
+const Login = lazy(() => import("../../pages/Login"));
+const Register = lazy(() => import("../../pages/Register"));
+const Dashboard = lazy(() => import("../../pages/Dashboard"));
 
 type RouteType = {
   path: string;
