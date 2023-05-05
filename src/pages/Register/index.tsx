@@ -8,6 +8,7 @@ import Button from "../../components/Button";
 import { useAuth } from "../../providers/Auth";
 import { registerNewUser } from "../../services/register/registerService";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 interface UserData {
   email: string;
@@ -34,9 +35,6 @@ const Register = () => {
       email: data.email,
       password: data.password,
       confirmpassword: data.confirmPassword,
-      phone: data.phone,
-      oab: data.oab,
-      state: data.state,
       name: data.name,
     };
 
@@ -49,9 +47,11 @@ const Register = () => {
       .catch((error) => toast.error(error.response.data));
   };
 
-  if (token) {
-    return <Link to="/dashboard" />;
-  }
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [token]);
 
   return (
     <>
