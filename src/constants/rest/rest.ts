@@ -1,1 +1,1 @@
-export const TRANQUILOPAY_BFF_PATH = '/api/tranquilopay-bff';
+export const TRANQUILOPAY_BFF_PATH = 'https://tranquilopay-bff.vercel.app';

@@ -1,4 +1,5 @@
 import Axios, { AxiosRequestConfig } from 'axios';
+import { TRANQUILOPAY_BFF_PATH } from '../constants';
 
 export interface IRequest {
   url: string;
@@ -6,7 +7,9 @@ export interface IRequest {
   config?: AxiosRequestConfig<any>;
 }
 
-const initialAxios = Axios.create();
+const initialAxios = Axios.create({
+  baseURL: TRANQUILOPAY_BFF_PATH
+});
 
 const Api = {
   post: ({ url, body, config }: IRequest): Promise<any> =>
