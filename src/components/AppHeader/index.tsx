@@ -15,10 +15,15 @@ const AppHeader = () => {
     <AppHeaderWrapper>
       <StyledLink onClick={() => navigate("/")}>TranquiloPay</StyledLink>
       <Container>
-        <IconContainer onClick={() => navigate("/")}>
-          <PlusIcon />
-        </IconContainer>
+        {/* <IconContainer onClick={() => navigate("/login")}> */}
+          {/* <PlusIcon /> */}
+        {/* </IconContainer> */}
+        <StyledLink onClick={() => navigate("/login")}>Login</StyledLink>
       </Container>
+      <Container>
+      <StyledLink onClick={() => navigate("/register")}>Cadastrar</StyledLink>
+      </Container>
+
     </AppHeaderWrapper>
   );
 };

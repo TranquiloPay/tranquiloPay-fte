@@ -1,4 +1,4 @@
-import { styled, keyframes } from "../../styles/stitches";
+import { styled } from "../../styles/stitches";
 
 const Container = styled("div", {
   height: "532.8px",
