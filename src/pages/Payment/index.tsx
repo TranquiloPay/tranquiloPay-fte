@@ -7,6 +7,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { payment } from "../../services/payment/payment";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const schema = yup.object().shape({
   customer: yup.string().required("Campo obrigatório"),
@@ -16,6 +17,7 @@ const schema = yup.object().shape({
 });
 
 const PaymentPage = () => {
+  const [urlPayment, setUrlPayment] = React.useState("");
   const {
     register,
     handleSubmit,
@@ -24,17 +26,27 @@ const PaymentPage = () => {
     resolver: yupResolver(schema),
   });
 
+  function removeBaseUrl(url: any) {
+    const baseUrl = "http://localhost:5173/";
+    console.log(url)
+    if (url.startsWith(baseUrl)) {
+      return url.substring(baseUrl.length);
+    }
+
+    return url;
+  }
+
   const handlePayment = async (data: any) => {
     const dataObj = {
-      customer: "cus_000053996492",
-      billingType: data.billingType,
-      dueDate: "2017-06-10",
+      customer: "cus_000054004956",
+      billingType: "UNDEFINED",
+      dueDate: data.dueDate,
       value: data.value,
     };
     payment(dataObj)
       .then((response) => {
-        toast.success("Sucesso!");
-        console.log(response);
+        toast.success(response.msg);
+        setUrlPayment(removeBaseUrl(response.url));
       })
       .catch((error) => {
         toast.error(error);
@@ -43,38 +55,50 @@ const PaymentPage = () => {
 
   return (
     <Container>
-      <PaymentForm onSubmit={handleSubmit(handlePayment)}>
-        <Title>Pagamento com PIX</Title>
-        <Input
-          type="text"
-          name="customer"
-          placeholder="Customer"
-          register={register}
-        />
-        {errors.customer && <span>{errors.customer.message}</span>}
-        <Input
-          type="text"
-          name="billingType"
-          placeholder="Billing Type"
-          register={register}
-        />
-        {errors.billingType && <span>{errors.billingType.message}</span>}
-        <Input
-          type="text"
-          name="dueDate"
-          placeholder="Due Date"
-          register={register}
-        />
-        {errors.dueDate && <span>{errors.dueDate.message}</span>}
-        <Input
-          type="text"
-          name="value"
-          placeholder="Value"
-          register={register}
-        />
-        {errors.value && <span>{errors.value.message}</span>}
-        <Button type="submit">Pagar</Button>
-      </PaymentForm>
+      {!urlPayment && (
+        <PaymentForm onSubmit={handleSubmit(handlePayment)}>
+          <Title>Pagamento com PIX</Title>
+          <Input
+            type="text"
+            name="customer"
+            placeholder="Customer"
+            register={register}
+            error={errors.customer?.message && `${errors.customer?.message}`}
+          />
+          <Input
+            type="text"
+            name="billingType"
+            placeholder="Billing Type"
+            register={register}
+            error={
+              errors.billingType?.message && `${errors.billingType?.message}`
+            }
+          />
+          <Input
+            type="text"
+            name="dueDate"
+            placeholder="Due Date"
+            register={register}
+            error={errors.dueDate?.message && `${errors.dueDate?.message}`}
+          />
+          <Input
+            type="text"
+            name="value"
+            placeholder="Value"
+            register={register}
+            error={errors.value?.message && `${errors.value?.message}`}
+          />
+          <Button type="submit">Gerar</Button>
+        </PaymentForm>
+      )}
+      {urlPayment && (
+        <>
+          <p>
+            Clique <a href={`/${urlPayment}`}>aqui</a> para acessar o seu
+            débito!
+          </p>
+        </>
+      )}
     </Container>
   );
 };

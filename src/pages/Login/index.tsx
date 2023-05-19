@@ -2,13 +2,13 @@ import { schemaLogin } from "../../components/schema";
 import { useAuth } from "../../providers/Auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-// import Header from "../../components/Header";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { Container, ContainerForm } from "./styles";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
+import Lottie from "react-lottie";
+import loginAnimation from "../../assets/animations/login.json";
 interface UserData {
   email: string;
   password: string;
@@ -17,6 +17,15 @@ interface UserData {
 const Login = () => {
   const { token, signIn } = useAuth();
   const navigate = useNavigate();
+
+  const lottieOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: loginAnimation,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
 
   const {
     register,
@@ -37,6 +46,7 @@ const Login = () => {
   return (
     <>
       <Container>
+      <Lottie options={lottieOptions} height={400} width={400} />{" "}
         <ContainerForm>
           <h1>Login</h1>
           <form onSubmit={handleSubmit(onSubmitForm)}>
