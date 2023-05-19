@@ -28,7 +28,7 @@ const PaymentPage = () => {
 
   function removeBaseUrl(url: any) {
     const baseUrl = "http://localhost:5173/";
-    console.log(url)
+    console.log(url);
     if (url.startsWith(baseUrl)) {
       return url.substring(baseUrl.length);
     }
@@ -94,8 +94,7 @@ const PaymentPage = () => {
       {urlPayment && (
         <>
           <p>
-            Clique <a href={`/${urlPayment}`}>aqui</a> para acessar o seu
-            débito!
+            Clique <a href={urlPayment}>aqui</a> para acessar o seu débito!
           </p>
         </>
       )}
