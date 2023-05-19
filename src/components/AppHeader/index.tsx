@@ -1,30 +1,27 @@
-import React from "react";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
-import {
-  AppHeaderWrapper,
-  Container,
-  IconContainer,
-  StyledLink,
-} from "./styles";
-import { PlusIcon } from "../../assets/icons";
 
 const AppHeader = () => {
   const navigate = useNavigate();
 
   return (
-    <AppHeaderWrapper>
-      <StyledLink onClick={() => navigate("/")}>TranquiloPay</StyledLink>
-      <Container>
-        {/* <IconContainer onClick={() => navigate("/login")}> */}
-          {/* <PlusIcon /> */}
-        {/* </IconContainer> */}
-        <StyledLink onClick={() => navigate("/login")}>Login</StyledLink>
-      </Container>
-      <Container>
-      <StyledLink onClick={() => navigate("/register")}>Cadastrar</StyledLink>
-      </Container>
-
-    </AppHeaderWrapper>
+    <AppBar position="fixed" style={{ width: "100%" }}>
+      <Toolbar>
+        <Typography
+          onClick={() => navigate("/")}
+          variant="h6"
+          style={{ flexGrow: 1, cursor: "pointer" }}
+        >
+          TranquiloPay
+        </Typography>
+        <Button onClick={() => navigate("/login")} color="inherit">
+          Login
+        </Button>
+        <Button onClick={() => navigate("/register")} color="inherit">
+          Register
+        </Button>
+      </Toolbar>
+    </AppBar>
   );
 };
 
