@@ -69,7 +69,7 @@ const Login = () => {
             <Button>Acessar</Button>
             <p>
               Não possui um cadastro?{" "}
-              <Link to="/register">faça seu cadastro</Link>
+              <Link to="/register">Faça seu cadastro</Link>
             </p>
           </form>
         </ContainerForm>
