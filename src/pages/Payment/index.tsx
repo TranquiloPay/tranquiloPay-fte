@@ -68,7 +68,7 @@ const PaymentPage = () => {
           <Input
             type="text"
             name="billingType"
-            placeholder="Billing Type"
+            placeholder="Tipo de pagamento"
             register={register}
             error={
               errors.billingType?.message && `${errors.billingType?.message}`
@@ -77,14 +77,14 @@ const PaymentPage = () => {
           <Input
             type="text"
             name="dueDate"
-            placeholder="Due Date"
+            placeholder="Data de vencimento"
             register={register}
             error={errors.dueDate?.message && `${errors.dueDate?.message}`}
           />
           <Input
             type="text"
             name="value"
-            placeholder="Value"
+            placeholder="Valor do pagamento"
             register={register}
             error={errors.value?.message && `${errors.value?.message}`}
           />
