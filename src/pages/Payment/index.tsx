@@ -7,7 +7,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { payment } from "../../services/payment/payment";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import Sidebar from "../../components/Sidebar";
 
 const schema = yup.object().shape({
   customer: yup.string().required("Campo obrigatório"),
@@ -54,14 +54,16 @@ const PaymentPage = () => {
   };
 
   return (
+    <>
+    <Sidebar/>
     <Container>
       {!urlPayment && (
         <PaymentForm onSubmit={handleSubmit(handlePayment)}>
-          <Title>Pagamento com PIX</Title>
+          <Title>Gerar um pagamento</Title>
           <Input
             type="text"
             name="customer"
-            placeholder="Customer"
+            placeholder="Cliente"
             register={register}
             error={errors.customer?.message && `${errors.customer?.message}`}
           />
@@ -77,14 +79,14 @@ const PaymentPage = () => {
           <Input
             type="text"
             name="dueDate"
-            placeholder="Data de vencimento"
+            placeholder="2028-12-12"
             register={register}
             error={errors.dueDate?.message && `${errors.dueDate?.message}`}
           />
           <Input
             type="text"
             name="value"
-            placeholder="Valor do pagamento"
+            placeholder="Valor inteiro acima de R$ 5"
             register={register}
             error={errors.value?.message && `${errors.value?.message}`}
           />
@@ -99,6 +101,7 @@ const PaymentPage = () => {
         </>
       )}
     </Container>
+    </>
   );
 };
 
