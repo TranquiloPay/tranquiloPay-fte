@@ -5,10 +5,8 @@ import { schema } from "../../components/schema";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
-import { useAuth } from "../../providers/Auth";
 import { registerNewUser } from "../../services/register/registerService";
 import { toast } from "react-toastify";
-import { useEffect } from "react";
 import Lottie from "react-lottie";
 import registerAnimation from "../../assets/animations/register.json";
 
@@ -17,10 +15,10 @@ interface UserData {
   password: string;
   confirmPassword: string;
   name: string;
+  cpf: string;
 }
 
 const Register = () => {
-  const { token } = useAuth();
   const navigate = useNavigate();
 
   const lottieOptions = {
@@ -44,22 +42,17 @@ const Register = () => {
       password: data.password,
       confirmpassword: data.confirmPassword,
       name: data.name,
+      cpf: data.cpf,
     };
 
     registerNewUser(newData)
       .then((response) => {
         localStorage.clear();
-        toast.success("Conta criada");
+        toast.success(response.data.msg);
         setTimeout(() => navigate("/login"), 2000);
       })
-      .catch((error) => toast.error(error.response.data));
+      .catch((error) => toast.error(error.response.data.msg));
   };
-
-  useEffect(() => {
-    if (token) {
-      navigate("/dashboard");
-    }
-  }, [token]);
 
   return (
     <>
@@ -73,9 +66,17 @@ const Register = () => {
               placeholder="Nome"
               name="name"
               type="text"
-              maxLength={15}
+              maxLength={50}
               register={register}
               error={errors.name?.message && `${errors.name?.message}`}
+            />
+            <Input
+              data-cy="password/register"
+              placeholder="CPF"
+              name="cpf"
+              type="text"
+              register={register}
+              error={errors.cpf?.message && `${errors.cpf?.message}`}
             />
             <Input
               data-cy="email/register"

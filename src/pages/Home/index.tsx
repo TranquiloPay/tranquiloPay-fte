@@ -5,6 +5,8 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { Container, Typography } from "@mui/material";
+import { useAuth } from "../../providers/Auth";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const lottieOptions = {
@@ -15,6 +17,11 @@ const Home = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+  const navigate = useNavigate();
+
+  const { token } = useAuth();
+
+  if(token) navigate('/dashboard')
 
   return (
     <div>

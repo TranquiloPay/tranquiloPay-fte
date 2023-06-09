@@ -1,4 +1,4 @@
-import { createContext, useState, ReactNode, useContext } from "react";
+import { createContext, useState, ReactNode, useContext, useEffect } from "react";
 import { useUser } from "../User";
 import { login } from "../../services/login/loginService";
 import { toast } from "react-toastify";
@@ -30,9 +30,16 @@ export const AuthProvider = ({ children }: AuthProps) => {
   );
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [token]);
+
   const signIn = (data: UserData) => {
     login(data)
       .then((response) => {
+        console.log('userlogado', response)
         localStorage.clear();
         setToken(response.token);
         setUser(response.user);
