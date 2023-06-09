@@ -5,8 +5,7 @@ import { useForm } from "react-hook-form";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { Container, ContainerForm } from "./styles";
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import loginAnimation from "../../assets/animations/login.json";
 interface UserData {
@@ -15,8 +14,7 @@ interface UserData {
 }
 
 const Login = () => {
-  const { token, signIn } = useAuth();
-  const navigate = useNavigate();
+  const { signIn } = useAuth();
 
   const lottieOptions = {
     loop: true,
@@ -37,16 +35,10 @@ const Login = () => {
     signIn(data);
   };
 
-  useEffect(() => {
-    if (token) {
-      navigate("/dashboard");
-    }
-  }, [token]);
-
   return (
     <>
       <Container>
-      <Lottie options={lottieOptions} height={400} width={400} />{" "}
+        <Lottie options={lottieOptions} height={400} width={400} />{" "}
         <ContainerForm>
           <h1>Login</h1>
           <form onSubmit={handleSubmit(onSubmitForm)}>
