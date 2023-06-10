@@ -34,6 +34,9 @@ export const AuthProvider = ({ children }: AuthProps) => {
     if (token) {
       navigate("/dashboard");
     }
+    if (!token) {
+      navigate("/login");
+    }
   }, [token]);
 
   const signIn = (data: UserData) => {
@@ -47,8 +50,12 @@ export const AuthProvider = ({ children }: AuthProps) => {
           "@token:tranquilopay",
           JSON.stringify(response.token)
         );
+        localStorage.setItem(
+          "@user:tranquilopay",
+          JSON.stringify(response.user)
+        );
         toast.success("Login efetuado com sucesso!");
-        setTimeout(() => navigate("/dashboard"), 700);
+        setTimeout(() => navigate("/dashboard"), 500);
       })
       .catch(() => toast.error("E-mail ou senha incorretos!"));
   };
