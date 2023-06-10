@@ -1,7 +1,6 @@
-import React from "react";
 import Lottie from "react-lottie";
 import unlockAnimation from "../../assets/animations/unlock.json";
-import { Container, Button } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 
@@ -18,11 +17,16 @@ const Dashboard = () => {
   };
   return (
     <>
-    <Sidebar/>
-    <Container style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-      <Lottie options={lottieOptions} height={400} width={400} />{" "}
-      <h1>Você está logado.</h1>
-    </Container>
+      <Container
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Lottie options={lottieOptions} height={400} width={400} />{" "}
+        <h1>Você está logado.</h1>
+      </Container>
     </>
   );
 };

@@ -56,7 +56,7 @@ const Sidebar = () => {
       </SidebarLink>
       <SidebarLink
         onClick={() => {
-          navigate("/payments");
+          navigate("/paymentsList");
         }}
       >
         <SidebarIcon>💳</SidebarIcon>

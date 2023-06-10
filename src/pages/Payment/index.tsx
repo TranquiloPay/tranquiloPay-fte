@@ -55,7 +55,6 @@ const PaymentPage = () => {
 
   return (
     <>
-    <Sidebar/>
     <Container>
       {!urlPayment && (
         <PaymentForm onSubmit={handleSubmit(handlePayment)}>

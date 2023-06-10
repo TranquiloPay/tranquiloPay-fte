@@ -38,11 +38,11 @@ const Register = () => {
 
   const createUser = (data: UserData) => {
     const newData = {
-      email: data.email,
-      password: data.password,
-      confirmpassword: data.confirmPassword,
-      name: data.name,
-      cpf: data.cpf,
+      email: data?.email,
+      password: data?.password,
+      confirmpassword: data?.confirmPassword,
+      name: data?.name,
+      cpf: data?.cpf,
     };
 
     registerNewUser(newData)
