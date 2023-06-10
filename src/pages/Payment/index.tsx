@@ -8,10 +8,9 @@ import Button from "../../components/Button";
 import { payment } from "../../services/payment/payment";
 import { toast } from "react-toastify";
 import Sidebar from "../../components/Sidebar";
+import { useUser } from "../../providers/User";
 
 const schema = yup.object().shape({
-  customer: yup.string().required("Campo obrigatório"),
-  billingType: yup.string().required("Campo obrigatório"),
   dueDate: yup.date().required("Campo obrigatório"),
   value: yup.number().required("Campo obrigatório"),
 });
@@ -26,6 +25,8 @@ const PaymentPage = () => {
     resolver: yupResolver(schema),
   });
 
+  const { user } = useUser();
+
   function removeBaseUrl(url: any) {
     const baseUrl = "http://localhost:5173/";
     console.log(url);
@@ -38,7 +39,7 @@ const PaymentPage = () => {
 
   const handlePayment = async (data: any) => {
     const dataObj = {
-      customer: "cus_000054004956",
+      customer: user.customerId,
       billingType: "UNDEFINED",
       dueDate: data.dueDate,
       value: data.value,
@@ -55,51 +56,36 @@ const PaymentPage = () => {
 
   return (
     <>
-    <Container>
-      {!urlPayment && (
-        <PaymentForm onSubmit={handleSubmit(handlePayment)}>
-          <Title>Gerar um pagamento</Title>
-          <Input
-            type="text"
-            name="customer"
-            placeholder="Cliente"
-            register={register}
-            error={errors.customer?.message && `${errors.customer?.message}`}
-          />
-          <Input
-            type="text"
-            name="billingType"
-            placeholder="Tipo de pagamento"
-            register={register}
-            error={
-              errors.billingType?.message && `${errors.billingType?.message}`
-            }
-          />
-          <Input
-            type="text"
-            name="dueDate"
-            placeholder="2028-12-12"
-            register={register}
-            error={errors.dueDate?.message && `${errors.dueDate?.message}`}
-          />
-          <Input
-            type="text"
-            name="value"
-            placeholder="Valor inteiro acima de R$ 5"
-            register={register}
-            error={errors.value?.message && `${errors.value?.message}`}
-          />
-          <Button type="submit">Gerar</Button>
-        </PaymentForm>
-      )}
-      {urlPayment && (
-        <>
-          <p>
-            Clique <a href={urlPayment}>aqui</a> para acessar o seu débito!
-          </p>
-        </>
-      )}
-    </Container>
+      <Sidebar />
+      <Container>
+        {!urlPayment && (
+          <PaymentForm onSubmit={handleSubmit(handlePayment)}>
+            <Title>Gerar um pagamento</Title>
+            <Input
+              type="text"
+              name="dueDate"
+              placeholder="2028-12-12"
+              register={register}
+              error={errors.dueDate?.message && `${errors.dueDate?.message}`}
+            />
+            <Input
+              type="text"
+              name="value"
+              placeholder="Valor inteiro acima de R$ 5"
+              register={register}
+              error={errors.value?.message && `${errors.value?.message}`}
+            />
+            <Button type="submit">Gerar</Button>
+          </PaymentForm>
+        )}
+        {urlPayment && (
+          <>
+            <p>
+              Clique <a href={urlPayment}>aqui</a> para acessar o seu débito!
+            </p>
+          </>
+        )}
+      </Container>
     </>
   );
 };
