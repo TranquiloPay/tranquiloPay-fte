@@ -10,7 +10,7 @@ export const registerNewUser = async (userData: any): Promise<any> => {
 
   return new Promise((resolve, reject) => {
     if (SUCCESS_CODE.includes(response.status)) {
-      resolve(response.data);
+      resolve(response);
     } else {
       reject(response);
     }

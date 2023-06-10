@@ -4,6 +4,7 @@ interface User {
   email: string;
   id: number;
   name: string;
+  customerId: string
 }
 
 interface UserContextData {
@@ -15,17 +16,12 @@ interface UserProviderProps {
   children: ReactNode;
 }
 
-interface DecodeToken {
-  sub: string;
-  exp: number;
-  iat: number;
-  email: string;
-}
-
 const UserContext = createContext<UserContextData>({} as UserContextData);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, setUser] = useState<User>({} as User);
+  const [user, setUser] = useState<User>(
+    JSON.parse(localStorage.getItem("@user:tranquilopay")!) || {} as User
+  );
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
