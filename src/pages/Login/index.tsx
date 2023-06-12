@@ -44,24 +44,26 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmitForm)}>
             <Input
               data-cy="email/login"
-              placeholder="E-mail"
+              label="E-mail"
               name="email"
               type="email"
               register={register}
               error={errors.email?.message}
+              width="100%"
             />
             <Input
               data-cy="password/login"
-              placeholder="Senha"
+              label="Senha"
               name="password"
               type="password"
               register={register}
+              width="100%"
               error={errors.password?.message}
             />
             <Button>Acessar</Button>
             <p>
-              Não possui um cadastro?{" "}
-              <Link to="/register">Faça seu cadastro</Link>
+              Não possui uma conta?{" "}
+              <Link to="/register">Faça seu cadastro!</Link>
             </p>
           </form>
         </ContainerForm>

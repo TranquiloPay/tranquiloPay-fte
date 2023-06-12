@@ -9,6 +9,7 @@ export const Container = styled("button", {
   border: "none",
   borderRadius: "5px",
   cursor: "pointer",
+  margin: '16px 0 0 0',
 
   "&:hover": {
     transition: "0.5s",
