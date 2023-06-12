@@ -1,61 +1,88 @@
 import { InputHTMLAttributes, useState } from "react";
-import { Container, ContainerInput, ErrorMessage } from "./style";
+import { ContainerInput } from "./style";
 import { RiEyeCloseLine, RiEyeFill } from "react-icons/ri";
 import { phoneMask } from "./mask";
 
+import * as React from "react";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import InputMui from "@mui/material/Input";
+import FilledInput from "@mui/material/FilledInput";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import FormHelperText from "@mui/material/FormHelperText";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import { Container } from "@mui/material";
+
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  placeholder?: string;
+  label?: string;
   register?: any;
   name?: string;
   error?: string;
   width?: string;
   type?: string;
   inputMask?: boolean;
+  isMoney?: boolean;
 }
 
 const Input = ({
   type,
-  placeholder,
+  label,
   name,
   register,
   error,
   width,
   inputMask,
+  isMoney,
   ...rest
 }: InputProps) => {
-  const [open, setOpen] = useState<boolean>(false);
-  const [inputValue, setInputValue] = useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
 
-  phoneMask(inputValue);
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
   return (
-    <Container {...rest} style={{ width: width }}>
-      <ContainerInput>
-        <input
-          type={type === "password" ? (open ? "text" : "password") : type}
-          value={inputValue}
-          error={error}
-          {...register(name, {
-            onChange: (event: any) => {
-              if (inputMask) {
-                let maskResult = phoneMask(event.target.value);
-                setInputValue(maskResult);
-              } else {
-                setInputValue(event.target.value);
-              }
-            },
-          })}
-          placeholder={placeholder}
-          {...rest}
-        />
-        {type === "password" &&
-          (open ? (
-            <RiEyeCloseLine onClick={() => setOpen(false)} />
-          ) : (
-            <RiEyeFill onClick={() => setOpen(true)} />
-          ))}
-      </ContainerInput>
-      <ErrorMessage>{error}</ErrorMessage>
-    </Container>
+    <>
+      <TextField
+        {...register(name)}
+        {...rest}
+        error={!!error}
+        label={label}
+        type={type === "password" ? (showPassword ? "text" : "password") : type}
+        id="outlined-start-adornment"
+        fullWidth
+        sx={{ m: 1, width: width, margin: "8px 0 0 0" }}
+        InputProps={{
+          startAdornment: isMoney && (
+            <InputAdornment position="start">R$</InputAdornment>
+          ),
+          endAdornment: (
+            <InputAdornment position="end">
+              {type === "password" && (
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  edge="end"
+                >
+                  {showPassword ? <RiEyeCloseLine /> : <RiEyeFill />}
+                </IconButton>
+              )}
+            </InputAdornment>
+          ),
+        }}
+      />
+      <FormHelperText sx={{ margin: "0px !important" }} error={!!error}>
+        {error}
+      </FormHelperText>
+    </>
   );
 };
 

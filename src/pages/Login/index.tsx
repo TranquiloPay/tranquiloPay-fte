@@ -56,18 +56,20 @@ const Login = () => {
           <form onSubmit={handleSubmit(onSubmitForm)}>
             <StyledInput
               data-cy="email/login"
-              placeholder="E-mail"
+              label="E-mail"
               name="email"
               type="email"
               register={register}
               error={errors.email?.message}
+              width="100%"
             />
             <StyledInput
               data-cy="password/login"
-              placeholder="Senha"
+              label="Senha"
               name="password"
               type="password"
               register={register}
+              width="100%"
               error={errors.password?.message}
             />
             <Typography variant="h6">

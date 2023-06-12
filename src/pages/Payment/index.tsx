@@ -9,24 +9,38 @@ import { payment } from "../../services/payment/payment";
 import { toast } from "react-toastify";
 import Sidebar from "../../components/Sidebar";
 import { useUser } from "../../providers/User";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import dayjs from "dayjs";
+import "dayjs/locale/pt-br";
+
+dayjs.locale("pt-br");
 
 const schema = yup.object().shape({
   dueDate: yup.date().required("Campo obrigatório"),
-  value: yup.number().required("Campo obrigatório"),
+  value: yup
+    .number()
+    .typeError("O valor deve ser um número")
+    .min(5, "O valor deve ser maior ou igual a 5")
+    .required("Campo obrigatório"),
 });
 
 const PaymentPage = () => {
-  const [urlPayment, setUrlPayment] = React.useState("");
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm({
     resolver: yupResolver(schema),
   });
+  const [urlPayment, setUrlPayment] = React.useState("");
 
   const { user } = useUser();
-
+  const currentDate = dayjs();
+  
   function removeBaseUrl(url: any) {
     const baseUrl = "http://localhost:5173/";
     console.log(url);
@@ -61,17 +75,22 @@ const PaymentPage = () => {
         {!urlPayment && (
           <PaymentForm onSubmit={handleSubmit(handlePayment)}>
             <Title>Gerar um pagamento</Title>
-            <Input
-              type="text"
-              name="dueDate"
-              placeholder="2028-12-12"
-              register={register}
-              error={errors.dueDate?.message && `${errors.dueDate?.message}`}
-            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DemoContainer components={["DatePicker"]}>
+                <DatePicker
+                  {...register("dueDate")}
+                  value={currentDate}
+                  onChange={(date) => setValue("dueDate", date)}
+                  format="DD/MM/YYYY"
+                  label="Data de vencimento"
+                />
+              </DemoContainer>
+            </LocalizationProvider>
             <Input
               type="text"
               name="value"
-              placeholder="Valor inteiro acima de R$ 5"
+              isMoney
+              placeholder="5,00"
               register={register}
               error={errors.value?.message && `${errors.value?.message}`}
             />
