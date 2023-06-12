@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, useState } from "react";
-import { Container, ContainerInput } from "./style";
+import { Container, ContainerInput, ErrorMessage } from "./style";
 import { RiEyeCloseLine, RiEyeFill } from "react-icons/ri";
-import { phoneMask } from './mask';
+import { phoneMask } from "./mask";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string;
@@ -24,7 +24,7 @@ const Input = ({
   ...rest
 }: InputProps) => {
   const [open, setOpen] = useState<boolean>(false);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   phoneMask(inputValue);
   return (
@@ -54,7 +54,7 @@ const Input = ({
             <RiEyeFill onClick={() => setOpen(true)} />
           ))}
       </ContainerInput>
-      <span>{error}</span>
+      <ErrorMessage>{error}</ErrorMessage>
     </Container>
   );
 };

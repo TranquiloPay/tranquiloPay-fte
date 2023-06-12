@@ -9,6 +9,7 @@ import { registerNewUser } from "../../services/register/registerService";
 import { toast } from "react-toastify";
 import Lottie from "react-lottie";
 import registerAnimation from "../../assets/animations/register.json";
+import { Typography } from "@mui/material";
 
 interface UserData {
   email: string;
@@ -57,7 +58,17 @@ const Register = () => {
   return (
     <>
       <Container>
-        <Lottie options={lottieOptions} height={400} width={400} />{" "}
+        <div>
+          <Lottie
+            options={lottieOptions}
+            height={400}
+            width={400}
+            isClickToPauseDisabled={true}
+          />{" "}
+          <Typography variant="h6">
+            Já possui um cadastro? <Link to="/login">Faça seu login</Link>
+          </Typography>
+        </div>
         <FormContainer>
           <h1>Cadastro</h1>
           <form onSubmit={handleSubmit(createUser)}>
@@ -106,9 +117,6 @@ const Register = () => {
               }
             />
             <Button type="submit">Cadastrar</Button>
-            <p>
-              Já possui um cadastro? <Link to="/login">faça seu login</Link>
-            </p>
           </form>
         </FormContainer>
       </Container>

@@ -12,7 +12,7 @@ const PaymentTable = () => {
       <Table aria-label="payment-table">
         <TableHead style={{ background: "rgba(0,0,0,.05)" }}>
           <TableRow>
-            <TableCell style={{}}>Nome</TableCell>
+            <TableCell size="medium">Nome</TableCell>
             <TableCell size="medium">Valor</TableCell>
             <TableCell size="medium">Descrição</TableCell>
             <TableCell size="medium">Forma de pagamento</TableCell>

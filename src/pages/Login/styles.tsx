@@ -1,23 +1,25 @@
 import { styled } from "@stitches/react";
+import Input from "../../components/Input";
 
-export const Container = styled("div", {
+const Container = styled("div", {
   display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  flexDirection: "column",
-  zIndex: 0,
+  justifyContent: "space-between",
+  backgroundColor: "White",
+  borderRadius: "14px",
+  height: "55vh",
+  padding: "24px",
+  boxShadow: "rgba(0, 0, 0, 0.08) 0rem 0.125rem 0.5rem 0rem",
 
   "&::-webkit-scrollbar": {
     display: "none",
   },
 });
 
-export const ContainerForm = styled("div", {
-  width: "90%",
-  maxWidth: "500px",
+const ContainerForm = styled("div", {
+  width: "50%",
+  paddingTop: "50px",
 
-  h1: {
-    fontSize: "24px",
+  h2: {
     fontWeight: 600,
     marginBottom: "30px",
   },
@@ -28,10 +30,6 @@ export const ContainerForm = styled("div", {
     flexWrap: "wrap",
     justifyContent: "space-between",
 
-    input: {
-      marginBottom: "2px",
-    },
-
     p: {
       color: "var(--gray-50)",
       fontSize: "14px",
@@ -39,3 +37,14 @@ export const ContainerForm = styled("div", {
     },
   },
 });
+
+const StyledContainer = styled("div", {
+  padding: "20px",
+});
+
+const StyledInput = styled(Input, {
+  fontSize: "18px",
+  alignContent: "center",
+});
+
+export { ContainerForm, Container, StyledContainer, StyledInput };

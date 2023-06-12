@@ -4,7 +4,7 @@ export const globalStyles = globalCss({
   body: {
     maxWidth: "1036px",
     margin: "0 auto",
-    backgroundColor: "white",
+    backgroundColor: "rgb(247, 247, 247)",
     fontFamily: "Open Sans, sans-serif",
     fontStyle: "normal",
     "& h1, h2, h3, h4": {
