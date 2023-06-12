@@ -2,12 +2,18 @@ import { schemaLogin } from "../../components/schema";
 import { useAuth } from "../../providers/Auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import Input from "../../components/Input";
 import Button from "../../components/Button";
-import { Container, ContainerForm } from "./styles";
+import {
+  Container,
+  ContainerForm,
+  StyledContainer,
+  StyledInput,
+} from "./styles";
 import { Link } from "react-router-dom";
 import Lottie from "react-lottie";
 import loginAnimation from "../../assets/animations/login.json";
+import { createLottieOptions } from "../../utils/generic";
+import { Typography } from "@mui/material";
 interface UserData {
   email: string;
   password: string;
@@ -15,15 +21,6 @@ interface UserData {
 
 const Login = () => {
   const { signIn } = useAuth();
-
-  const lottieOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: loginAnimation,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
 
   const {
     register,
@@ -38,11 +35,26 @@ const Login = () => {
   return (
     <>
       <Container>
-        <Lottie options={lottieOptions} height={400} width={400} />{" "}
+        <StyledContainer>
+          <div>
+            <Lottie
+              options={createLottieOptions(loginAnimation, false)}
+              isClickToPauseDisabled={true}
+              height={400}
+              width={400}
+            />
+          </div>
+          <div>
+            <Typography variant="h6">
+              Não possui um cadastro?{" "}
+              <Link to="/register">Faça seu cadastro</Link>
+            </Typography>
+          </div>
+        </StyledContainer>
         <ContainerForm>
-          <h1>Login</h1>
+          <Typography variant="h2">Login</Typography>
           <form onSubmit={handleSubmit(onSubmitForm)}>
-            <Input
+            <StyledInput
               data-cy="email/login"
               label="E-mail"
               name="email"
@@ -51,7 +63,7 @@ const Login = () => {
               error={errors.email?.message}
               width="100%"
             />
-            <Input
+            <StyledInput
               data-cy="password/login"
               label="Senha"
               name="password"
@@ -60,11 +72,13 @@ const Login = () => {
               width="100%"
               error={errors.password?.message}
             />
-            <Button>Acessar</Button>
-            <p>
-              Não possui uma conta?{" "}
-              <Link to="/register">Faça seu cadastro!</Link>
-            </p>
+            <Typography variant="h6">
+              Esqueceu sua senha? {""}
+              <Link to="/register">Esqueci minha senha</Link>
+            </Typography>
+            <Button style={{ width: "200px", marginTop: "37px" }}>
+              Acessar
+            </Button>
           </form>
         </ContainerForm>
       </Container>

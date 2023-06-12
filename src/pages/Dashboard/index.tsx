@@ -1,28 +1,28 @@
-import React from "react";
 import Lottie from "react-lottie";
 import unlockAnimation from "../../assets/animations/unlock.json";
-import { Container, Button } from "@material-ui/core";
-import { useNavigate } from "react-router-dom";
+import { Container } from "@material-ui/core";
+import { createLottieOptions } from "../../utils/generic";
 import Sidebar from "../../components/Sidebar";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-
-  const lottieOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: unlockAnimation,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
   return (
     <>
-    <Sidebar/>
-    <Container style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-      <Lottie options={lottieOptions} height={400} width={400} />{" "}
-      <h1>Você está logado.</h1>
-    </Container>
+      <Sidebar />
+      <Container
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Lottie
+          options={createLottieOptions(unlockAnimation)}
+          isClickToPauseDisabled={true}
+          height={400}
+          width={400}
+        />
+        <h1>Você está logado.</h1>
+      </Container>
     </>
   );
 };

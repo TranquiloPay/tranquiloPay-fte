@@ -1,4 +1,10 @@
-import { createContext, useState, ReactNode, useContext, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  ReactNode,
+  useContext,
+  useEffect,
+} from "react";
 import { useUser } from "../User";
 import { login } from "../../services/login/loginService";
 import { toast } from "react-toastify";
@@ -32,17 +38,15 @@ export const AuthProvider = ({ children }: AuthProps) => {
 
   useEffect(() => {
     if (token) {
-      navigate("/dashboard");
+      return navigate("/dashboard");
     }
-    if (!token) {
-      navigate("/login");
-    }
+    return navigate("/login");
   }, [token]);
 
   const signIn = (data: UserData) => {
     login(data)
       .then((response) => {
-        console.log('userlogado', response)
+        console.log("userlogado", response);
         localStorage.clear();
         setToken(response.token);
         setUser(response.user);

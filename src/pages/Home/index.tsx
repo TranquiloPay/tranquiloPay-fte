@@ -7,21 +7,14 @@ import "@fontsource/roboto/700.css";
 import { Container, Typography } from "@mui/material";
 import { useAuth } from "../../providers/Auth";
 import { useNavigate } from "react-router-dom";
+import { createLottieOptions } from "../../utils/generic";
 
 const Home = () => {
-  const lottieOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: paymentAnimation,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
   const navigate = useNavigate();
 
   const { token } = useAuth();
 
-  if(token) navigate('/dashboard')
+  if (token) navigate("/dashboard");
 
   return (
     <div>
@@ -36,11 +29,11 @@ const Home = () => {
       >
         <Container style={{ width: "500px" }}>
           <Typography variant="h3" gutterBottom>
-            Bem-vindo ao tranquiloPay!
+            Bem-vindo ao TranquiloPay!
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
             Estamos felizes em recebê-lo em nossa plataforma de pagamentos
-            segura e confiável. Com o tranquiloPay, você pode desfrutar de uma
+            segura e confiável. Com o TranquiloPay, você pode desfrutar de uma
             experiência simplificada ao realizar e receber pagamentos de forma
             rápida e conveniente. Nossa plataforma foi projetada para atender às
             suas necessidades financeiras, oferecendo uma variedade de recursos
@@ -48,7 +41,12 @@ const Home = () => {
             seguras.
           </Typography>
         </Container>
-        <Lottie options={lottieOptions} height={400} width={400} />{" "}
+        <Lottie
+          options={createLottieOptions(paymentAnimation)}
+          height={400}
+          width={400}
+          isClickToPauseDisabled={true}
+        />{" "}
       </div>
     </div>
   );

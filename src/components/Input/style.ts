@@ -1,6 +1,6 @@
 import { styled } from "../../styles/stitches";
 
-export const Container = styled("div", {
+const Container = styled("div", {
   width: "100%",
   height: "85px",
   display: "flex",
@@ -15,15 +15,9 @@ export const Container = styled("div", {
     borderSize: "1px",
     outline: "none",
   },
-
-  span: {
-    color: "var(--negative)",
-    fontSize: "10px",
-    paddingLeft: "5px",
-  },
 });
 
-export const ContainerInput = styled("div", {
+const ContainerInput = styled("div", {
   width: "100%",
   height: "60px",
   display: "flex",
@@ -33,5 +27,14 @@ export const ContainerInput = styled("div", {
   background: "var(--gray-0)",
   boxSizing: "border-box",
   borderRadius: "8px",
-  border: "2px solid #333333",
+  border: "1px solid #333333",
 });
+
+const ErrorMessage = styled("span", {
+  fontSize: "12px",
+  paddingLeft: "5px",
+  marginBottom: '2px',
+  color: "Red",
+});
+
+export { Container, ContainerInput, ErrorMessage };

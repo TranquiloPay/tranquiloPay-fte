@@ -5,6 +5,7 @@ const Login = lazy(() => import("../../pages/Login"));
 const Register = lazy(() => import("../../pages/Register"));
 const Dashboard = lazy(() => import("../../pages/Dashboard"));
 const Payment = lazy(() => import("../../pages/Payment"));
+const PaymentList = lazy(() => import("../../pages/PaymentsList"));
 
 type RouteType = {
   path: string;
@@ -39,5 +40,11 @@ export const routes: RouteType[] = [
     name: "Payments",
     //ToDo: Add private route
     Component: <Payment />,
+  },
+  {
+    path: `/paymentsList`,
+    name: "Payments List",
+    //ToDo: Add private route
+    Component: <PaymentList />,
   },
 ];
