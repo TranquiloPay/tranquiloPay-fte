@@ -63,40 +63,44 @@ const Register = () => {
           <form onSubmit={handleSubmit(createUser)}>
             <Input
               data-cy="name/register"
-              placeholder="Nome"
+              label="Nome"
               name="name"
               type="text"
               maxLength={50}
               register={register}
               error={errors.name?.message && `${errors.name?.message}`}
+              width="100%"
             />
             <Input
               data-cy="password/register"
-              placeholder="CPF"
+              label="CPF"
               name="cpf"
               type="text"
               register={register}
               error={errors.cpf?.message && `${errors.cpf?.message}`}
+              width="100%"
             />
             <Input
               data-cy="email/register"
-              placeholder="E-mail"
+              label="E-mail"
               name="email"
               type="email"
               register={register}
               error={errors.email?.message && `${errors.email?.message}`}
+              width="100%"
             />
             <Input
               data-cy="password/register"
-              placeholder="Senha"
+              label="Senha"
               name="password"
               type="password"
               register={register}
               error={errors.password?.message && `${errors.password?.message}`}
+              width="100%"
             />
             <Input
               data-cy="confirmpassword/register"
-              placeholder="Confirmar Senha"
+              label="Confirmar Senha"
               name="confirmPassword"
               type="password"
               register={register}
@@ -104,10 +108,11 @@ const Register = () => {
                 errors.confirmPassword?.message &&
                 `${errors.confirmPassword?.message}`
               }
+              width="100%"
             />
             <Button type="submit">Cadastrar</Button>
             <p>
-              Já possui um cadastro? <Link to="/login">faça seu login</Link>
+              Já possui uma conta? <Link to="/login">Faça seu login!</Link>
             </p>
           </form>
         </FormContainer>
