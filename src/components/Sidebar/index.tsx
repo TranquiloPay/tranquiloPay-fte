@@ -11,7 +11,7 @@ import {
 import Lottie from "react-lottie";
 import { createLottieOptions } from "../../utils/generic";
 import { useState } from "react";
-import { Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const Sidebar = () => {
   const navigate = useNavigate();

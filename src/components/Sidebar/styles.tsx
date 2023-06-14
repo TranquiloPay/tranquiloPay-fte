@@ -48,7 +48,7 @@ const StyledCollapse = styled("div", {
   marginBottom: `20px`,
 
   "&:hover": {
-    backgroundColor: "rgb( 209, 158, 67)",
+    backgroundColor: "rgb(209, 158, 67)",
     height: "auto",
   },
 
