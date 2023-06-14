@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import LoadingDots from "../../assets/animations/loadingDots.json";
 import PaymentTable from "../../components/PaymentTable";
 import Sidebar from "../../components/Sidebar";
 import { Container, ContainerTable, Header } from "./styles";
 import { Typography } from "@mui/material";
 import { getPaymentsByCustomerId } from "../../services/payment/payment";
 import { useUser } from "../../providers/User";
+import { LoadingWrapper } from "../../styles/global";
+import Lottie from "react-lottie";
+import { createLottieOptions } from "../../utils/generic";
 
 const PaymentList = () => {
   const [billings, setBillings] = useState([]);
@@ -18,6 +22,7 @@ const PaymentList = () => {
         console.log(err);
       });
   }, []);
+
   return (
     <>
       <Sidebar />
@@ -29,7 +34,18 @@ const PaymentList = () => {
         </Header>
       </Container>
       <ContainerTable>
-        <PaymentTable tableData={billings} />
+        {!billings.length ? (
+          <LoadingWrapper>
+            <Lottie
+              options={createLottieOptions(LoadingDots)}
+              isClickToPauseDisabled={true}
+              height={120}
+              width={120}
+            />
+          </LoadingWrapper>
+        ) : (
+          <PaymentTable tableData={billings} />
+        )}
       </ContainerTable>
     </>
   );

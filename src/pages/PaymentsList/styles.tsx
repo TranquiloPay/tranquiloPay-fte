@@ -26,4 +26,10 @@ const Header = styled("header", {
   padding: "24px",
 });
 
-export { ContainerTable, Header, Container };
+const Footer = styled("div", {
+  display: "flex",
+  justifyContent: "space-between",
+  margin: "$6",
+});
+
+export { ContainerTable, Header, Container, Footer };

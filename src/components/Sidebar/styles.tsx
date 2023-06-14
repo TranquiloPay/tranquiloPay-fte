@@ -33,10 +33,8 @@ const SidebarTypograph = styled(Typography, {
 
 const StyledCollapse = styled("div", {
   width: "28px",
-  backgroundColor: "rgb(250, 250, 250)",
   display: "flex",
-  height: "40px",
-  marginTop: "0.25rem",
+  marginTop: "0.50rem",
   marginLeft: "0",
   paddingTop: "0.25rem",
   paddingRight: "0.5rem",
@@ -48,6 +46,23 @@ const StyledCollapse = styled("div", {
   transition: "0.2s",
   flexDirection: "column",
   marginBottom: `20px`,
+
+  "&:hover": {
+    backgroundColor: "rgb( 209, 158, 67)",
+    height: "auto",
+  },
+
+  variants: {
+    isOpen: {
+      true: {
+        width: `282px`,
+        alignItems: "self-start",
+      },
+      false: {
+        width: `28px`,
+      },
+    },
+  },
 });
 
 const SidebarIcon = styled("span", {});
