@@ -19,7 +19,7 @@ const Sidebar = () => {
   const tabNames = {
     dashboard: "Dashboard",
     paymentsList: "Lista de Pagamentos",
-    payments: "Pagamentos Pagamentos Pagamentos",
+    payments: "Pagamentos",
   };
 
   const [onHover, setOnHover] = useState<boolean>(false);
