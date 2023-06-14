@@ -16,3 +16,22 @@ export const payment = async (paymentData: any): Promise<any> => {
     }
   });
 };
+
+export const getPaymentsByCustomerId = async (customerId: String): Promise<any> => {
+  const body = {
+    customer: Number(customerId),
+    limit: 100
+  };
+  const response = await Api.get({
+    url: `/payments`,
+    body,
+  });
+
+  return new Promise((resolve, reject) => {
+    if (SUCCESS_CODE.includes(response.status)) {
+      resolve(response.data);
+    } else {
+      reject(response);
+    }
+  });
+};

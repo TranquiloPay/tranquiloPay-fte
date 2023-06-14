@@ -82,6 +82,7 @@ const PaymentPage = () => {
                   value={currentDate}
                   onChange={(date) => setValue("dueDate", date)}
                   format="DD/MM/YYYY"
+                  disablePast
                   label="Data de vencimento"
                 />
               </DemoContainer>

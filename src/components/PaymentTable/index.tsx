@@ -6,47 +6,36 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 
-const PaymentTable = () => {
+const PaymentTable = ({ tableData }: any) => {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="payment-table">
-        <TableHead style={{ background: "rgba(0,0,0,.05)" }}>
+        <TableHead style={{ background: "rgba(0,0,0,.1)" }}>
           <TableRow>
-            <TableCell size="medium">Nome</TableCell>
-            <TableCell size="medium">Valor</TableCell>
-            <TableCell size="medium">Descrição</TableCell>
-            <TableCell size="medium">Forma de pagamento</TableCell>
-            <TableCell size="medium">Data de vencimento</TableCell>
-            <TableCell size="medium">Telefone</TableCell>
+            <TableCell style={{ fontWeight: "bold" }}>Valor</TableCell>
+            <TableCell style={{ fontWeight: "bold" }}>
+              Forma de pagamento
+            </TableCell>
+            <TableCell style={{ fontWeight: "bold" }}>
+              Data de vencimento
+            </TableCell>
+            <TableCell style={{ fontWeight: "bold" }}>Status</TableCell>
             <TableCell />
           </TableRow>
         </TableHead>
-        <TableBody style={{ background: "#f5f5f5" }}>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              11312321
-            </TableCell>
-            <TableCell align="left">teste</TableCell>
-            <TableCell align="left">quantidade</TableCell>
-            <TableCell align="left">sei la</TableCell>
-            <TableCell align="left">sei la</TableCell>
-            <TableCell align="left">sei la</TableCell>
-            <TableCell />
-          </TableRow>
-        </TableBody>
-        <TableBody style={{ background: "#f5f5f5" }}>
-          <TableRow>
-            <TableCell component="th" scope="row">
-              11312321
-            </TableCell>
-            <TableCell align="left">teste</TableCell>
-            <TableCell align="left">quantidade</TableCell>
-            <TableCell align="left">sei la</TableCell>
-            <TableCell align="left">sei la</TableCell>
-            <TableCell align="left">sei la</TableCell>
-            <TableCell />
-          </TableRow>
-        </TableBody>
+        {tableData?.map((row: any) => {
+          return (
+            <TableBody key={row.id}>
+              <TableRow>
+                <TableCell>{row.value}</TableCell>
+                <TableCell>{row.billingType}</TableCell>
+                <TableCell>{row.dueDate}</TableCell>
+                <TableCell>{row.status}</TableCell>
+                <TableCell />
+              </TableRow>
+            </TableBody>
+          );
+        })}
       </Table>
     </TableContainer>
   );
