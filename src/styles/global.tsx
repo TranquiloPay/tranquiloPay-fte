@@ -1,4 +1,4 @@
-import { globalCss } from "@stitches/react";
+import { globalCss, styled } from "@stitches/react";
 
 export const globalStyles = globalCss({
   body: {
@@ -11,4 +11,12 @@ export const globalStyles = globalCss({
       margin: 0,
     },
   },
+});
+
+export const LoadingWrapper = styled("div", {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "60vh",
+  width: "100%",
 });
