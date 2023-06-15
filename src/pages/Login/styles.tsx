@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 const Container = styled("div", {
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
   backgroundColor: "White",
   borderRadius: "14px",
   height: "55vh",

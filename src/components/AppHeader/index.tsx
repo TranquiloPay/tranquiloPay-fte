@@ -24,13 +24,13 @@ const AppHeader = () => {
           <>
             <div>
               <StyledButton onClick={() => navigate("/login")}>
-                Login
+                Entrar
               </StyledButton>
-              <Button onClick={() => navigate("/register")}>Register</Button>
+              <Button onClick={() => navigate("/register")}>Registrar</Button>
             </div>
           </>
         ) : (
-          <Button onClick={() => Logout()}>Logout</Button>
+          <Button onClick={() => Logout()}>Sair</Button>
         )}
       </Toolbar>
     </AppBar>

@@ -52,7 +52,7 @@ const Login = () => {
           </div>
         </StyledContainer>
         <ContainerForm>
-          <Typography variant="h2">Login</Typography>
+          <Typography variant="h3">Entrar</Typography>
           <form onSubmit={handleSubmit(onSubmitForm)}>
             <StyledInput
               data-cy="email/login"

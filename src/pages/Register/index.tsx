@@ -58,7 +58,7 @@ const Register = () => {
   return (
     <>
       <Container>
-        <div>
+        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Lottie
             options={lottieOptions}
             height={400}
@@ -66,7 +66,7 @@ const Register = () => {
             isClickToPauseDisabled={true}
           />{" "}
           <Typography variant="h6">
-            Já possui uma conta? <Link to="/login">Faça seu login!</Link>
+            Já possui uma conta? <Link to="/login">Entrar!</Link>
           </Typography>
         </div>
         <FormContainer>
