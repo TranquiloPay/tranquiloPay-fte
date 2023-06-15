@@ -10,11 +10,22 @@ const Container = styled("div", {
 
 const ContainerTable = styled("div", {
   boxShadow: "0rem 0.125rem 0.5rem 0rem rgba(0,0,0,.08);",
-  borderRadius: "0 0 14px 14px",
-  maxHeight: "65vh",
+  height: "65vh",
   background: "White",
   margin: "0 0 0 5vw",
   overflow: "auto",
+
+  '&::-webkit-scrollbar': {
+    width: '10px',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    borderRadius: '16px',
+    backgroundColor: 'rgba(0, 0, 0, .1)',
+  },
+
+  '&::-webkit-scrollbar-thumb:hover': {
+    backgroundColor: 'rgba(0, 0, 0, .2)',
+  },
 });
 
 const Header = styled("header", {
@@ -27,9 +38,13 @@ const Header = styled("header", {
 });
 
 const Footer = styled("div", {
+  boxShadow: "0rem 0.125rem 0.5rem 0rem rgba(0,0,0,.08);",
   display: "flex",
   justifyContent: "space-between",
-  margin: "$6",
+  height: '10px',
+  margin: "0 0 0 5vw",
+  backgroundColor: "white",
+  borderRadius: "0 0 14px 14px",
 });
 
 export { ContainerTable, Header, Container, Footer };
