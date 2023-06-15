@@ -47,7 +47,7 @@ const PaymentList = () => {
     if (billings.length >= 0) {
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 1500);
     }
   }, [billings]);
 
