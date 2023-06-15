@@ -47,7 +47,7 @@ const Login = () => {
           <div>
             <Typography variant="h6">
               Não possui um cadastro?{" "}
-              <Link to="/register">Faça seu cadastro</Link>
+              <Link to="/register">Faça seu cadastro!</Link>
             </Typography>
           </div>
         </StyledContainer>
@@ -72,11 +72,12 @@ const Login = () => {
               width="100%"
               error={errors.password?.message}
             />
-            <Typography variant="h6">
+            {/* ToDo: Uncomment after implementing password recovery. */}
+            {/* <Typography variant="h6">
               Esqueceu sua senha? {""}
               <Link to="/register">Esqueci minha senha</Link>
-            </Typography>
-            <Button style={{ width: "200px", marginTop: "37px" }}>
+            </Typography> */}
+            <Button style={{ width: "100%", marginTop: "37px" }}>
               Acessar
             </Button>
           </form>

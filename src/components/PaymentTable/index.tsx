@@ -36,7 +36,12 @@ const PaymentTable = ({ tableData }: any) => {
                 redirectToExternalURL(row.invoiceUrl);
               }}
             >
-              <TableCell>{row.value}</TableCell>
+              <TableCell>
+                {row.value.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}
+              </TableCell>
               <TableCell>
                 {ShowMessageWithCondition(
                   row.billingType === "UNDEFINED",
@@ -45,7 +50,9 @@ const PaymentTable = ({ tableData }: any) => {
               </TableCell>
               <TableCell>{row.dueDate}</TableCell>
               <TableCell>
-                {ShowMessageWithCondition(row.status === "PENDING", "Pendente")}
+                {row.status === "PENDING"
+                  ? "Pendente"
+                  : row.status === "RECEIVED" && "Pago"}
               </TableCell>
             </TableRow>
           ))}

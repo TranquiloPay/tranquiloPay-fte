@@ -57,7 +57,7 @@ const PaymentList = () => {
       <Container>
         <Header>
           <Typography variant="h4" fontWeight={600}>
-            Lista de pagamentos
+            Lista de Doações
           </Typography>
         </Header>
       </Container>

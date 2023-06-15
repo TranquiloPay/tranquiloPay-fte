@@ -1,7 +1,8 @@
-import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
+import { AppBar, Toolbar, Container, Button } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/Auth";
 import { StyledButton } from "./styles";
+import Aumigos from '../../assets/imgs/Logo_Aumigo.png';
 
 const AppHeader = () => {
   const navigate = useNavigate();
@@ -13,13 +14,12 @@ const AppHeader = () => {
       style={{ width: "100%", backgroundColor: "white" }}
     >
       <Toolbar style={{ justifyContent: "space-between" }}>
-        <Typography
+        <div
           onClick={() => (token ? navigate("/dashboard") : navigate("/"))}
-          variant="h5"
           style={{ color: "black", cursor: "pointer" }}
         >
-          TranquiloPay
-        </Typography>
+          <img style={{width: '60px'}}src={Aumigos} alt="Logo Aumigos"/>
+        </div>
         {!token ? (
           <>
             <div>

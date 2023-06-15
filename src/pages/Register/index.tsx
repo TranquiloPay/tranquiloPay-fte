@@ -66,7 +66,7 @@ const Register = () => {
             isClickToPauseDisabled={true}
           />{" "}
           <Typography variant="h6">
-            Já possui um cadastro? <Link to="/login">Faça seu login</Link>
+            Já possui uma conta? <Link to="/login">Faça seu login!</Link>
           </Typography>
         </div>
         <FormContainer>
@@ -122,9 +122,6 @@ const Register = () => {
               width="100%"
             />
             <Button type="submit">Cadastrar</Button>
-            <p>
-              Já possui uma conta? <Link to="/login">Faça seu login!</Link>
-            </p>
           </form>
         </FormContainer>
       </Container>

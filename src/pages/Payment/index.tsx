@@ -15,6 +15,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import "dayjs/locale/pt-br";
+import { Card, Typography } from "@mui/material";
 
 dayjs.locale("pt-br");
 
@@ -23,7 +24,7 @@ const schema = yup.object().shape({
   value: yup
     .number()
     .typeError("O valor deve ser um número")
-    .min(5, "O valor deve ser maior ou igual a 5")
+    .min(5, "O valor deve ser maior ou igual a R$ 5,00")
     .required("Campo obrigatório"),
 });
 
@@ -40,7 +41,8 @@ const PaymentPage = () => {
 
   const { user } = useUser();
   const currentDate = dayjs();
-  
+  const newDate = currentDate.add(1, "day");
+
   function removeBaseUrl(url: any) {
     const baseUrl = "http://localhost:5173/";
     console.log(url);
@@ -73,13 +75,15 @@ const PaymentPage = () => {
       <Sidebar />
       <Container>
         {!urlPayment && (
-          <PaymentForm onSubmit={handleSubmit(handlePayment)}>
-            <Title>Gerar um pagamento</Title>
+          <PaymentForm
+            onSubmit={handleSubmit(handlePayment)}
+          >
+            <Title>Fazer uma doação!</Title>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker"]}>
                 <DatePicker
                   {...register("dueDate")}
-                  value={currentDate}
+                  value={newDate}
                   onChange={(date) => setValue("dueDate", date)}
                   format="DD/MM/YYYY"
                   disablePast
@@ -99,11 +103,23 @@ const PaymentPage = () => {
           </PaymentForm>
         )}
         {urlPayment && (
-          <>
-            <p>
-              Clique <a href={urlPayment}>aqui</a> para acessar o seu débito!
-            </p>
-          </>
+          <Card
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "300px",
+              height: "292px",
+              padding: "10px",
+            }}
+          >
+            <Title>Pagamento gerado!</Title>
+            <Typography>
+              Clique <a href={urlPayment}>aqui</a> para acessar o
+            </Typography>
+            <Typography>seu débito e realizar o pagamento!</Typography>
+          </Card>
         )}
       </Container>
     </>
