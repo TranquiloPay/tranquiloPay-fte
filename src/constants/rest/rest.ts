@@ -1,1 +1,4 @@
-export const TRANQUILOPAY_BFF_PATH = 'https://tranquilopay-bff.vercel.app';
+export const TRANQUILOPAY_BFF_PATH =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : "https://tranquilopay-bff.vercel.app";
