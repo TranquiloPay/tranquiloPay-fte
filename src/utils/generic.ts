@@ -14,3 +14,7 @@ export const createLottieOptions = (
 
   return lottieOptions;
 };
+
+export const redirectToExternalURL = (url: string) => {
+  return window.location.replace(url);
+};
