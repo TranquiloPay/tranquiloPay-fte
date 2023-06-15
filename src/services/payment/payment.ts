@@ -18,13 +18,8 @@ export const payment = async (paymentData: any): Promise<any> => {
 };
 
 export const getPaymentsByCustomerId = async (customerId: String): Promise<any> => {
-  const body = {
-    customer: Number(customerId),
-    limit: 100
-  };
   const response = await Api.get({
-    url: `/payments`,
-    body,
+    url: `/payments?customerId=${customerId}`,
   });
 
   return new Promise((resolve, reject) => {

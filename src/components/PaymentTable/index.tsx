@@ -1,3 +1,4 @@
+import React from "react";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -5,8 +6,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
+import { useNavigate } from "react-router-dom";
 
 const PaymentTable = ({ tableData }: any) => {
+  const navigate = useNavigate();
   return (
     <TableContainer component={Paper}>
       <Table aria-label="payment-table">
@@ -23,19 +26,22 @@ const PaymentTable = ({ tableData }: any) => {
             <TableCell />
           </TableRow>
         </TableHead>
-        {tableData?.map((row: any) => {
-          return (
-            <TableBody key={row.id}>
-              <TableRow>
-                <TableCell>{row.value}</TableCell>
-                <TableCell>{row.billingType}</TableCell>
-                <TableCell>{row.dueDate}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                <TableCell />
-              </TableRow>
-            </TableBody>
-          );
-        })}
+        <TableBody>
+          {tableData?.map((row: any) => (
+            <TableRow
+              key={row.id}
+              style={{ cursor: "pointer" }}
+              hover
+              onClick={() => navigate(row.invoiceUrl)}
+            >
+              <TableCell>{row.value}</TableCell>
+              <TableCell>{row.billingType}</TableCell>
+              <TableCell>{row.dueDate}</TableCell>
+              <TableCell>{row.status}</TableCell>
+              <TableCell />
+            </TableRow>
+          ))}
+        </TableBody>
       </Table>
     </TableContainer>
   );
