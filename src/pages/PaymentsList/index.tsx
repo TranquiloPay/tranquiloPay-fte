@@ -45,11 +45,10 @@ const PaymentList = () => {
 
   useEffect(() => {
     if (billings.length >= 0) {
-      
       setTimeout(() => {
-        setIsLoading(false)
+        setIsLoading(false);
       }, 1000);
-    };
+    }
   }, [billings]);
 
   return (
@@ -76,7 +75,7 @@ const PaymentList = () => {
           renderListOrEmpty()
         )}
       </ContainerTable>
-      <Footer/>
+      <Footer />
     </>
   );
 };
