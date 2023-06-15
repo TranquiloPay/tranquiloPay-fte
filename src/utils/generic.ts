@@ -18,3 +18,9 @@ export const createLottieOptions = (
 export const redirectToExternalURL = (url: string) => {
   return window.location.replace(url);
 };
+
+export const ShowMessageWithCondition = (condicao: any, mensagem: any) => {
+  if (condicao) {
+    return `${mensagem}`;
+  }
+};
