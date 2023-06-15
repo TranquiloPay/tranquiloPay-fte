@@ -9,6 +9,7 @@ import {
   ShowMessageWithCondition,
   redirectToExternalURL,
 } from "../../utils/generic";
+import dayjs from "dayjs";
 
 const PaymentTable = ({ tableData }: any) => {
   return (
@@ -16,14 +17,14 @@ const PaymentTable = ({ tableData }: any) => {
       <Table aria-label="payment-table">
         <TableHead style={{ background: "rgba(0,0,0,.1)" }}>
           <TableRow>
-            <TableCell style={{ fontWeight: "bold" }}>Valor</TableCell>
-            <TableCell style={{ fontWeight: "bold" }}>
+            <TableCell align="center" style={{ fontWeight: "bold" }}>Valor</TableCell>
+            <TableCell align="center" style={{ fontWeight: "bold" }}>
               Forma de pagamento
             </TableCell>
-            <TableCell style={{ fontWeight: "bold" }}>
+            <TableCell align="center" style={{ fontWeight: "bold" }}>
               Data de vencimento
             </TableCell>
-            <TableCell style={{ fontWeight: "bold" }}>Status</TableCell>
+            <TableCell align="center" style={{ fontWeight: "bold" }}>Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -36,20 +37,22 @@ const PaymentTable = ({ tableData }: any) => {
                 redirectToExternalURL(row.invoiceUrl);
               }}
             >
-              <TableCell>
+              <TableCell align="center">
                 {row.value.toLocaleString("pt-BR", {
                   style: "currency",
                   currency: "BRL",
                 })}
               </TableCell>
-              <TableCell>
+              <TableCell align="center">
                 {ShowMessageWithCondition(
                   row.billingType === "UNDEFINED",
                   "A definir"
                 )}
               </TableCell>
-              <TableCell>{row.dueDate}</TableCell>
-              <TableCell>
+              <TableCell align="center">
+                {dayjs(row.dueDate).format("DD/MM/YYYY")}
+              </TableCell>
+              <TableCell align="center">
                 {row.status === "PENDING"
                   ? "Pendente"
                   : row.status === "RECEIVED" && "Pago"}

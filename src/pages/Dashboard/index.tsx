@@ -3,7 +3,6 @@ import Dogs from "../../assets/animations/dogs.json";
 import { Container, Typography } from "@material-ui/core";
 import { createLottieOptions } from "../../utils/generic";
 import Sidebar from "../../components/Sidebar";
-import Aumigos from "../../assets/imgs/Logo_Aumigo.png";
 
 const Dashboard = () => {
   return (
@@ -17,14 +16,17 @@ const Dashboard = () => {
         }}
       >
         <Container
-                style={{
-                  width: "275px",
-                }}
+          style={{
+            width: "45%",
+          }}
         >
           <Typography variant="h6">Seja muito bem vindo(a)!</Typography>
           <Typography variant="h6">
             Esse espaço é para você
-            <br></br><Typography style={{color: "rgb(209, 158, 67)"}} variant="h6">doar com segurança.</Typography>
+            <br />
+            <Typography style={{ color: "rgb(209, 158, 67)" }} variant="h6">
+              doar com segurança.
+            </Typography>
           </Typography>
         </Container>
         <Lottie

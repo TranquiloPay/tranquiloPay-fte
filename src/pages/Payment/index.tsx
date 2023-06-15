@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, PaymentForm, Title } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -37,11 +37,10 @@ const PaymentPage = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const [urlPayment, setUrlPayment] = React.useState("");
+  const [urlPayment, setUrlPayment] = useState("");
+  const [currentDate, _] = useState(dayjs().add(1, "day"));
 
   const { user } = useUser();
-  const currentDate = dayjs();
-  const newDate = currentDate.add(1, "day");
 
   function removeBaseUrl(url: any) {
     const baseUrl = "http://localhost:5173/";
@@ -83,7 +82,7 @@ const PaymentPage = () => {
               <DemoContainer components={["DatePicker"]}>
                 <DatePicker
                   {...register("dueDate")}
-                  value={newDate}
+                  value={currentDate}
                   onChange={(date) => setValue("dueDate", date)}
                   format="DD/MM/YYYY"
                   disablePast
