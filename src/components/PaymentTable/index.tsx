@@ -5,7 +5,10 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import { redirectToExternalURL } from "../../utils/generic";
+import {
+  ShowMessageWithCondition,
+  redirectToExternalURL,
+} from "../../utils/generic";
 
 const PaymentTable = ({ tableData }: any) => {
   return (
@@ -21,7 +24,6 @@ const PaymentTable = ({ tableData }: any) => {
               Data de vencimento
             </TableCell>
             <TableCell style={{ fontWeight: "bold" }}>Status</TableCell>
-            <TableCell />
           </TableRow>
         </TableHead>
         <TableBody>
@@ -35,10 +37,16 @@ const PaymentTable = ({ tableData }: any) => {
               }}
             >
               <TableCell>{row.value}</TableCell>
-              <TableCell>{row.billingType}</TableCell>
+              <TableCell>
+                {ShowMessageWithCondition(
+                  row.billingType === "UNDEFINED",
+                  "A definir"
+                )}
+              </TableCell>
               <TableCell>{row.dueDate}</TableCell>
-              <TableCell>{row.status}</TableCell>
-              <TableCell />
+              <TableCell>
+                {ShowMessageWithCondition(row.status === "PENDING", "Pendente")}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
