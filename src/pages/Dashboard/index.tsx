@@ -1,6 +1,6 @@
 import Lottie from "react-lottie";
-import unlockAnimation from "../../assets/animations/unlock.json";
-import { Container } from "@material-ui/core";
+import Dogs from "../../assets/animations/dogs.json";
+import { Container, Typography } from "@material-ui/core";
 import { createLottieOptions } from "../../utils/generic";
 import Sidebar from "../../components/Sidebar";
 
@@ -11,17 +11,30 @@ const Dashboard = () => {
       <Container
         style={{
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
           alignItems: "center",
         }}
       >
+        <Container
+          style={{
+            width: "45%",
+          }}
+        >
+          <Typography variant="h6">Seja muito bem vindo(a)!</Typography>
+          <Typography variant="h6">
+            Esse espaço é para você
+            <br />
+            <Typography style={{ color: "rgb(209, 158, 67)" }} variant="h6">
+              doar com segurança.
+            </Typography>
+          </Typography>
+        </Container>
         <Lottie
-          options={createLottieOptions(unlockAnimation)}
+          options={createLottieOptions(Dogs)}
           isClickToPauseDisabled={true}
           height={400}
           width={400}
         />
-        <h1>Você está logado.</h1>
       </Container>
     </>
   );

@@ -1,5 +1,5 @@
 import Lottie from "react-lottie";
-import paymentAnimation from "../../assets/animations/payment.json";
+import DogAndCat from "../../assets/animations/dog.json";
 import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
@@ -30,21 +30,21 @@ const Home = () => {
         }}
       >
         <Container style={{ width: "500px" }}>
-          <Typography variant="h3" gutterBottom>
-            Bem-vindo ao TranquiloPay!
+          <Typography variant="h4" gutterBottom>
+            Bem-vindo ao PROJETO AUMIGO ESTOU AQUI!
           </Typography>
           <Typography variant="subtitle1" gutterBottom>
-            Estamos felizes em recebê-lo em nossa plataforma de pagamentos
-            segura e confiável. Com o TranquiloPay, você pode desfrutar de uma
-            experiência simplificada ao realizar e receber pagamentos de forma
-            rápida e conveniente. Nossa plataforma foi projetada para atender às
-            suas necessidades financeiras, oferecendo uma variedade de recursos
-            e funcionalidades que tornam as transações financeiras simples e
+            Estamos felizes em recebê-lo em nossa plataforma de doações
+            segura e confiável. <br></br>Aqui você pode desfrutar de uma
+            experiência simplificada ao realizar doações de forma
+            rápida e conveniente. <br></br>Nossa plataforma foi projetada para atender às
+            suas necessidades, oferecendo uma variedade de recursos
+            e funcionalidades que tornam as doações simples e
             seguras.
           </Typography>
         </Container>
         <Lottie
-          options={createLottieOptions(paymentAnimation)}
+          options={createLottieOptions(DogAndCat)}
           height={400}
           width={400}
           isClickToPauseDisabled={true}
