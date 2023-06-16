@@ -28,14 +28,6 @@ export const Label = styled("label", {
   marginBottom: "10px",
 });
 
-export const Input = styled("input", {
-  width: "300px",
-  padding: "10px",
-  borderRadius: "4px",
-  border: "1px solid #ccc",
-  marginBottom: "20px",
-});
-
 export const Button = styled("button", {
   backgroundColor: "#007bff",
   color: "#fff",
