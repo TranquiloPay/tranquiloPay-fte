@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, PaymentForm, Title } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -23,7 +23,16 @@ const schema = yup.object().shape({
   dueDate: yup.date().required("Campo obrigatório"),
   value: yup
     .number()
-    .typeError("O valor deve ser um número")
+    .transform((value, originalValue) => {
+      // Verifica se o originalValue é uma string e contém apenas dígitos e uma vírgula
+      if (typeof originalValue === "string" && /^[\d,]+$/.test(originalValue)) {
+        // Remove a vírgula e transforma em número
+        return Number(originalValue.replace(",", "."));
+      }
+
+      // Mantém o valor original
+      return value;
+    })
     .min(5, "O valor deve ser maior ou igual a R$ 5,00")
     .required("Campo obrigatório"),
 });
@@ -38,7 +47,7 @@ const PaymentPage = () => {
     resolver: yupResolver(schema),
   });
   const [urlPayment, setUrlPayment] = useState("");
-  const [currentDate, _] = useState(dayjs().add(1, "day"));
+  const [currentDate, setCurrentDate] = useState(dayjs().add(1, "day"));
 
   const { user } = useUser();
 
@@ -69,14 +78,37 @@ const PaymentPage = () => {
       });
   };
 
+  const handleInputChange = (event: { target: { value: any } }) => {
+    const inputValue = event.target.value;
+    const numericValue = inputValue.replace(/[^0-9]/g, "");
+    let formattedValue = "";
+
+    if (numericValue.length > 2) {
+      const integerPart = numericValue.slice(0, -2);
+      const decimalPart = numericValue.slice(-2);
+
+      formattedValue = `${integerPart},${decimalPart}`;
+    } else if (numericValue.length === 1) {
+      formattedValue = `0,0${numericValue}`;
+    }
+
+    if (formattedValue !== "0,00") {
+      formattedValue = formattedValue.replace(/^0+/, "");
+    }
+
+    setValue("value", formattedValue);
+  };
+
+  useEffect(() => {
+    setValue("dueDate", currentDate);
+  }, [currentDate]);
+
   return (
     <>
       <Sidebar />
       <Container>
         {!urlPayment && (
-          <PaymentForm
-            onSubmit={handleSubmit(handlePayment)}
-          >
+          <PaymentForm onSubmit={handleSubmit(handlePayment)}>
             <Title>Fazer uma doação!</Title>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={["DatePicker"]}>
@@ -95,10 +127,13 @@ const PaymentPage = () => {
               name="value"
               isMoney
               placeholder="5,00"
+              onChange={handleInputChange}
               register={register}
               error={errors.value?.message && `${errors.value?.message}`}
             />
-            <Button type="submit">Gerar</Button>
+            <Button onClick={() => console.log(currentDate)} type="submit">
+              Gerar
+            </Button>
           </PaymentForm>
         )}
         {urlPayment && (
@@ -115,9 +150,19 @@ const PaymentPage = () => {
           >
             <Title>Pagamento gerado!</Title>
             <Typography>
-              Clique <a href={urlPayment}>aqui</a> para acessar o
+              Clique <a href={urlPayment} target="_blank">aqui</a> para acessar a
             </Typography>
-            <Typography>seu débito e realizar o pagamento!</Typography>
+            <Typography>sua doação e realizar o pagamento!</Typography>
+            <Button
+              onClick={() => {
+                setValue("value", "");
+                setCurrentDate(dayjs().add(1, "day"));
+                setUrlPayment("");
+              }}
+              type="submit"
+            >
+              Gerar nova doação
+            </Button>
           </Card>
         )}
       </Container>

@@ -8,7 +8,6 @@ const Container = styled("div", {
 
   input: {
     fontSize: "16px",
-    background: "var(--gray-0)",
     border: "none",
     width: "100%",
     height: "100%",

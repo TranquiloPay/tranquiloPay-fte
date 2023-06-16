@@ -16,8 +16,6 @@ const Home = () => {
 
   if (token) navigate("/dashboard");
 
-  console.log(token)
-
   return (
     <div>
       <div

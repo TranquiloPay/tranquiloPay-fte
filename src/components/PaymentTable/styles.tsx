@@ -1,6 +1,14 @@
-import { TableCell } from "@mui/material";
+import TableCell from "@material-ui/core/TableCell";
 import { styled } from "@stitches/react";
 
 const StyledTableCell = styled(TableCell, {
-    fontSize: '20px'
-})
+  variants: {
+    isDone: {
+      true: {
+        color: "LimeGreen !important",
+      },
+    },
+  },
+});
+
+export { StyledTableCell };

@@ -40,13 +40,12 @@ export const AuthProvider = ({ children }: AuthProps) => {
     if (token) {
       return navigate("/dashboard");
     }
-    return navigate("/login");
+    return navigate("/");
   }, [token]);
 
   const signIn = (data: UserData) => {
     login(data)
       .then((response) => {
-        console.log("userlogado", response);
         localStorage.clear();
         setToken(response.token);
         setUser(response.user);
