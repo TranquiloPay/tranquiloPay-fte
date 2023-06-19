@@ -1,41 +1,37 @@
 import Lottie from "react-lottie";
 import Dogs from "../../assets/animations/dogs.json";
-import { Container, Typography } from "@material-ui/core";
+import { Typography, Grid } from "@material-ui/core";
 import { createLottieOptions } from "../../utils/generic";
 import Sidebar from "../../components/Sidebar";
+import {
+  StyledContainer,
+  ContainerContent,
+  ContainerTexts,
+  ContainerLottie,
+  StyledTypography,
+} from "./styles";
 
 const Dashboard = () => {
   return (
     <>
       <Sidebar />
-      <Container
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-        }}
-      >
-        <Container
-          style={{
-            width: "45%",
-          }}
-        >
-          <Typography variant="h6">Seja muito bem vindo(a)!</Typography>
-          <Typography variant="h6">
-            Esse espaço é para você
-            <br />
-            <Typography style={{ color: "rgb(209, 158, 67)" }} variant="h6">
+      <StyledContainer>
+        <ContainerContent>
+          <ContainerTexts>
+            <StyledTypography variant="h6">Seja muito bem vindo(a)!</StyledTypography>
+            <StyledTypography variant="h5">Esse espaço é para você</StyledTypography>
+            <StyledTypography style={{ color: "rgb(209, 158, 67)" }} variant="h5">
               doar com segurança.
-            </Typography>
-          </Typography>
-        </Container>
-        <Lottie
-          options={createLottieOptions(Dogs)}
-          isClickToPauseDisabled={true}
-          height={400}
-          width={400}
-        />
-      </Container>
+            </StyledTypography>
+          </ContainerTexts>
+          <ContainerLottie>
+            <Lottie
+              options={createLottieOptions(Dogs)}
+              isClickToPauseDisabled={true}
+            />
+          </ContainerLottie>
+        </ContainerContent>
+      </StyledContainer>
     </>
   );
 };

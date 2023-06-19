@@ -35,25 +35,25 @@ const Login = () => {
   return (
     <>
       <Container>
-        <StyledContainer>
-          <div>
+        {/* <StyledContainer> */}
+          {/* <div>
             <Lottie
               options={createLottieOptions(loginAnimation, false)}
               isClickToPauseDisabled={true}
               height={400}
               width={400}
             />
-          </div>
-          <div>
-            <Typography variant="h6">
+          </div> */}
+          {/* <div>
+            <Typography>
               Não possui um cadastro?{" "}
               <Link to="/register">Faça seu cadastro!</Link>
             </Typography>
-          </div>
-        </StyledContainer>
-        <ContainerForm>
-          <Typography variant="h3">Entrar</Typography>
+          </div> */}
+        {/* </StyledContainer> */}
+        {/* <ContainerForm> */}
           <form onSubmit={handleSubmit(onSubmitForm)}>
+          <Typography variant="h3">Entrar</Typography>
             <StyledInput
               data-cy="email/login"
               label="E-mail"
@@ -72,6 +72,10 @@ const Login = () => {
               width="100%"
               error={errors.password?.message}
             />
+            <Typography>
+              Não possui um cadastro?{" "}
+              <Link to="/register">Faça seu cadastro!</Link>
+            </Typography>
             {/* ToDo: Uncomment after implementing password recovery. */}
             {/* <Typography variant="h6">
               Esqueceu sua senha? {""}
@@ -81,7 +85,7 @@ const Login = () => {
               Acessar
             </Button>
           </form>
-        </ContainerForm>
+        {/* </ContainerForm> */}
       </Container>
     </>
   );

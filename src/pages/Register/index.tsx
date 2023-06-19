@@ -58,7 +58,7 @@ const Register = () => {
   return (
     <>
       <Container>
-        <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        {/* <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Lottie
             options={lottieOptions}
             height={400}
@@ -68,7 +68,7 @@ const Register = () => {
           <Typography variant="h6">
             Já possui uma conta? <Link to="/login">Entrar!</Link>
           </Typography>
-        </div>
+        </div> */}
         <FormContainer>
           <h1>Cadastro</h1>
           <form onSubmit={handleSubmit(createUser)}>
