@@ -22,20 +22,27 @@ dayjs.locale("pt-br");
 const schema = yup.object().shape({
   dueDate: yup.date().required("Campo obrigatório"),
   value: yup
-    .number()
+    .mixed()
     .transform((value, originalValue) => {
-      // Verifica se o originalValue é uma string e contém apenas dígitos e uma vírgula
-      if (typeof originalValue === "string" && /^[\d,]+$/.test(originalValue)) {
-        // Remove a vírgula e transforma em número
-        return Number(originalValue.replace(",", "."));
+      if (originalValue === "") {
+        return ""; // Retorna a string vazia se o valor estiver vazio
       }
 
-      // Mantém o valor original
-      return value;
+      const numericValue = originalValue.replace(",", ".");
+
+      return parseFloat(numericValue); // Converte para número válido
     })
-    .min(5, "O valor deve ser maior ou igual a R$ 5,00")
+    .test("minimumValue", "O valor deve ser maior ou igual a R$ 5,00", (value) => {
+      if (value === "" || isNaN(value)) {
+        return false;
+      }
+
+      return value >= 5;
+    })
+    .typeError("O valor deve ser numérico")
     .required("Campo obrigatório"),
 });
+
 
 const PaymentPage = () => {
   const {
@@ -119,6 +126,7 @@ const PaymentPage = () => {
                   format="DD/MM/YYYY"
                   disablePast
                   label="Data de vencimento"
+                  sx={{width: '100% !important'}}
                 />
               </DemoContainer>
             </LocalizationProvider>
@@ -150,7 +158,11 @@ const PaymentPage = () => {
           >
             <Title>Pagamento gerado!</Title>
             <Typography>
-              Clique <a href={urlPayment} target="_blank">aqui</a> para acessar a
+              Clique{" "}
+              <a href={urlPayment} target="_blank">
+                aqui
+              </a>{" "}
+              para acessar a
             </Typography>
             <Typography>sua doação e realizar o pagamento!</Typography>
             <Button

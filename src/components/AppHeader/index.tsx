@@ -2,12 +2,13 @@ import { AppBar, Toolbar, Container, Button } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../providers/Auth";
 import { StyledButton } from "./styles";
-import Aumigos from '../../assets/imgs/Logo_Aumigo.png';
+import Aumigos from "../../assets/imgs/Logo_Aumigo.png";
+import { isCurrentPage } from "../../utils/generic";
 
 const AppHeader = () => {
   const navigate = useNavigate();
   const { token, Logout } = useAuth();
-
+  console.log(isCurrentPage("/login"))
   return (
     <AppBar
       position="fixed"
@@ -18,15 +19,23 @@ const AppHeader = () => {
           onClick={() => (token ? navigate("/dashboard") : navigate("/"))}
           style={{ color: "black", cursor: "pointer" }}
         >
-          <img style={{width: '60px'}}src={Aumigos} alt="Logo Aumigos"/>
+          <img style={{ width: "60px" }} src={Aumigos} alt="Logo Aumigos" />
         </div>
         {!token ? (
           <>
             <div>
-              <StyledButton onClick={() => navigate("/login")}>
+              <StyledButton
+                isNotVisible={isCurrentPage("/login")}
+                onClick={() => navigate("/login")}
+              >
                 Entrar
               </StyledButton>
-              <Button onClick={() => navigate("/register")}>Registrar</Button>
+              <StyledButton
+                isNotVisible={isCurrentPage("/register")}
+                onClick={() => navigate("/register")}
+              >
+                Registrar
+              </StyledButton>
             </div>
           </>
         ) : (

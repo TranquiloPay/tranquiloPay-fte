@@ -18,7 +18,7 @@ export const createLottieOptions = (
 };
 
 export const redirectToExternalURL = (url: string) => {
-  window.open(url, '_blank');
+  window.open(url, "_blank");
 };
 
 export const validateConditionsForRow = (
@@ -35,10 +35,14 @@ export const validateConditionsForRow = (
       );
 
       if (matchedCondition) {
-        console.log(matchedCondition.message)
+        console.log(matchedCondition.message);
         messages[prop] = matchedCondition.message;
       }
     }
   }
   return messages;
+};
+
+export const isCurrentPage = (path: string) => {
+  return location.pathname === path;
 };

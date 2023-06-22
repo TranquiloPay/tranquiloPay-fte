@@ -2,6 +2,22 @@ import { styled } from "@stitches/react";
 import { Box } from "@mui/system";
 import { Typography } from "@mui/material";
 
+const ContainerDesktop = styled("div", {
+  display: "none",
+  // Estilos para o breakpoint 'lg' com largura mínima de 1280px
+  "@media (min-width: 769px)": {
+    display: "initial",
+  },
+});
+
+const ContainerMobile = styled("div", {
+  display: "none",
+  // Estilos para o breakpoint 'xs' com largura mínima de 0px
+  "@media (max-width: 768px)": {
+    display: "initial",
+  },
+});
+
 const SidebarWrapper = styled(Box, {
   display: "flex",
   position: "fixed",
@@ -12,6 +28,19 @@ const SidebarWrapper = styled(Box, {
   backgroundColor: "White",
   zIndex: 9000,
   height: "75vh",
+  padding: "0.75rem",
+  boxShadow: "0rem 0.5rem 1.5rem 0rem rgba(0,0,0,.16)",
+  borderRadius: "2rem",
+  margin: "1rem",
+});
+
+const IconMobileContainer = styled("div", {
+  display: "flex",
+  position: "fixed",
+  overflow: "hidden",
+  left: "0px",
+  top: "60px",
+  zIndex: 9000,
   padding: "0.75rem",
   boxShadow: "0rem 0.5rem 1.5rem 0rem rgba(0,0,0,.16)",
   borderRadius: "2rem",
@@ -46,10 +75,14 @@ const StyledCollapse = styled("div", {
   transition: "0.2s",
   flexDirection: "column",
   marginBottom: `20px`,
+  height: "30px",
+
+  "@media (min-width: 769px)": {
+    height: "auto",
+  },
 
   "&:hover": {
     backgroundColor: "rgb(209, 158, 67)",
-    height: "auto",
   },
 
   variants: {
@@ -60,6 +93,14 @@ const StyledCollapse = styled("div", {
       },
       false: {
         width: `28px`,
+      },
+    },
+    isNotVisible: {
+      true: {
+        display: "none",
+      },
+      false: {
+        display: "flex",
       },
     },
   },
@@ -74,4 +115,7 @@ export {
   SidebarIcon,
   StyledCollapse,
   SidebarTypograph,
+  IconMobileContainer,
+  ContainerMobile,
+  ContainerDesktop,
 };
