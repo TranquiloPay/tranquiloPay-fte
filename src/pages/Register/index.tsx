@@ -1,4 +1,4 @@
-import { Container, FormContainer } from "./styles";
+import { Container, ContainerDesktop, FormContainer } from "./styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { schema } from "../../components/schema";
@@ -58,7 +58,7 @@ const Register = () => {
   return (
     <>
       <Container>
-        {/* <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <ContainerDesktop>
           <Lottie
             options={lottieOptions}
             height={400}
@@ -68,7 +68,7 @@ const Register = () => {
           <Typography variant="h6">
             Já possui uma conta? <Link to="/login">Entrar!</Link>
           </Typography>
-        </div> */}
+        </ContainerDesktop>
         <FormContainer>
           <h1>Cadastro</h1>
           <form onSubmit={handleSubmit(createUser)}>

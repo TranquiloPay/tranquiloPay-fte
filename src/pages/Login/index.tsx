@@ -14,6 +14,7 @@ import Lottie from "react-lottie";
 import loginAnimation from "../../assets/animations/login.json";
 import { createLottieOptions } from "../../utils/generic";
 import { Typography } from "@mui/material";
+import { ContainerDesktop } from "../Register/styles";
 interface UserData {
   email: string;
   password: string;
@@ -35,23 +36,18 @@ const Login = () => {
   return (
     <>
       <Container>
-        {/* <StyledContainer> */}
-          {/* <div>
+        <ContainerDesktop>
+        <StyledContainer>
+          <div>
             <Lottie
               options={createLottieOptions(loginAnimation, false)}
               isClickToPauseDisabled={true}
               height={400}
               width={400}
             />
-          </div> */}
-          {/* <div>
-            <Typography>
-              Não possui um cadastro?{" "}
-              <Link to="/register">Faça seu cadastro!</Link>
-            </Typography>
-          </div> */}
-        {/* </StyledContainer> */}
-        {/* <ContainerForm> */}
+          </div>
+        </StyledContainer>
+        </ContainerDesktop>
           <form onSubmit={handleSubmit(onSubmitForm)}>
           <Typography variant="h3">Entrar</Typography>
             <StyledInput
@@ -85,7 +81,6 @@ const Login = () => {
               Acessar
             </Button>
           </form>
-        {/* </ContainerForm> */}
       </Container>
     </>
   );

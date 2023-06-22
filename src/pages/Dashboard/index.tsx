@@ -18,9 +18,16 @@ const Dashboard = () => {
       <StyledContainer>
         <ContainerContent>
           <ContainerTexts>
-            <StyledTypography variant="h6">Seja muito bem vindo(a)!</StyledTypography>
-            <StyledTypography variant="h5">Esse espaço é para você</StyledTypography>
-            <StyledTypography style={{ color: "rgb(209, 158, 67)" }} variant="h5">
+            <StyledTypography variant="h6">
+              Seja muito bem vindo(a)!
+            </StyledTypography>
+            <StyledTypography variant="h5">
+              Esse espaço é para você
+            </StyledTypography>
+            <StyledTypography
+              style={{ color: "rgb(209, 158, 67)" }}
+              variant="h5"
+            >
               doar com segurança.
             </StyledTypography>
           </ContainerTexts>

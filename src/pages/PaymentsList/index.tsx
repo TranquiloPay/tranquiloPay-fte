@@ -3,7 +3,7 @@ import LoadingDots from "../../assets/animations/loadingDots.json";
 import Empty from "../../assets/animations/empty.json";
 import PaymentTable from "../../components/PaymentTable";
 import Sidebar from "../../components/Sidebar";
-import { Container, ContainerTable, Footer, Header } from "./styles";
+import { Container, ContainerContent, ContainerTable, Footer, Header } from "./styles";
 import { Typography } from "@mui/material";
 import { getPaymentsByCustomerId } from "../../services/payment/payment";
 import { useUser } from "../../providers/User";
@@ -54,9 +54,10 @@ const PaymentList = () => {
   return (
     <>
       <Sidebar />
+      <ContainerContent>
       <Container>
         <Header>
-          <Typography variant="h4" fontWeight={600}>
+          <Typography fontWeight={600}>
             Lista de Doações
           </Typography>
         </Header>
@@ -76,6 +77,7 @@ const PaymentList = () => {
         )}
       </ContainerTable>
       <Footer />
+      </ContainerContent>
     </>
   );
 };

@@ -20,3 +20,17 @@ export const LoadingWrapper = styled("div", {
   height: "60vh",
   width: "100%",
 });
+
+
+export const visibilityConfig = {
+  variants: {
+    isVisible: {
+      false: {
+        display: 'none',
+      },
+      true: {
+        display: 'flex',
+      },
+    },
+  },
+};

@@ -5,14 +5,38 @@ const Container = styled("div", {
   width: "80vw",
   borderRadius: "14px 14px 0 0",
   background: "White",
-  margin: "0 0 0 5vw",
+});
+
+const ContainerContent = styled("div", {
+  margin: '0 0 0 72px !important',
+  display: "flex",
+  flexDirection: "column",
+
+    // Estilos para o breakpoint 'xs' com largura mínima de 0px
+    "@media (min-width: 0px) and (max-width: 415px)": {
+      margin: '120px 0 0 0 !important',
+    },
+  
+    // Estilos para o breakpoint 'sm' com largura mínima de 400px
+    "@media (min-width: 416px) and (max-width: 550px)": {
+      margin: '120px 0 0 0 !important',
+    },
+  
+    // Estilos para o breakpoint 'md' com largura mínima de 960px
+    "@media (min-width: 551px) and (max-width: 768px)": {
+      margin: '120px 0 0 0 !important',
+    },
+  
+    // Estilos para o breakpoint 'lg' com largura mínima de 1280px
+    "@media (min-width: 769px) and (max-width: 1280px)": {
+    },
 });
 
 const ContainerTable = styled("div", {
   boxShadow: "0rem 0.125rem 0.5rem 0rem rgba(0,0,0,.08);",
+  width: "80vw",
   height: "65vh",
   background: "White",
-  margin: "0 0 0 5vw",
   overflow: "auto",
 
   '&::-webkit-scrollbar': {
@@ -42,9 +66,8 @@ const Footer = styled("div", {
   display: "flex",
   justifyContent: "space-between",
   height: '10px',
-  margin: "0 0 0 5vw",
   backgroundColor: "white",
   borderRadius: "0 0 14px 14px",
 });
 
-export { ContainerTable, Header, Container, Footer };
+export { ContainerTable, Header, Container, Footer, ContainerContent };
